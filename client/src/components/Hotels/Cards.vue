@@ -1,5 +1,16 @@
 <template>
   <v-container class="grey lighten-5 mb-6">
+
+    <div class="search-wrapper">
+      <v-toolbar dark color="cyan">
+        <v-toolbar-title>Search</v-toolbar-title>
+        <input class="input" type="text" v-model="search" placeholder="Search by city or name.." />
+
+        <v-btn id="homebutton" icon router-link to="/home">
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </div>
     <createHotel v-if="appear" />
     <v-btn
       v-if="userstatus === 'admin'"
@@ -12,18 +23,6 @@
       Add Hotel
       <v-icon dark>mdi-pencil</v-icon>
     </v-btn>
-
-    <div class="search-wrapper">
-      <v-toolbar dark color="cyan">
-        <v-toolbar-title>Search</v-toolbar-title>
-        <input class="input" type="text" v-model="search" placeholder="Search by city or name.." />
-
-        <v-btn id="homebutton" icon router-link to="/home">
-          <v-icon>mdi-home</v-icon>
-        </v-btn>
-      </v-toolbar>
-    </div>
-
     <v-row>
       <v-col v-for="(hotel, i) in filterHotels" :key="i" class="col">
         <v-hover v-slot="{ hover }">
@@ -44,12 +43,9 @@
                 </v-expand-transition>
               </v-img>
             </v-hover>
-            <!-- <v-tooltip bottom> -->
             <template>
               <v-card-title color="primary" dark>{{ hotel.title }}</v-card-title>
             </template>
-            <!-- <span>You can reserve below</span> -->
-            <!-- </v-tooltip> -->
             <v-card-text>
               <v-row align="center" class="mx-0">
                 <v-rating
@@ -61,7 +57,6 @@
                   size="14"
                 ></v-rating>
 
-                <!-- <div class="grey--text ml-4">{{ hotel.stars }}</div> -->
               </v-row>
               <div class="my-4 subtitle-1 blue--text">{{ hotel.address }}</div>
               <v-expand-transition>
@@ -110,13 +105,18 @@
             <v-card-actions>
               <!-- <div class="row">
               <div class="col">-->
-              <v-btn id="reserve" dark color="cyan" @click="showhotel(hotel._id)">Reserve</v-btn>
+                <v-col v-if="userstatus === 'admin'">
               <v-btn
-                v-if="userstatus === 'admin'"
+                @click="remove(hotel._id)"
+               id="delete"
                 class="ma-1"
                 color="red"
-                @click="remove(hotel._id)"
               >Delete</v-btn>
+                  </v-col>
+                <v-col v-else>
+
+              <v-btn id="reserve" dark color="cyan" @click="showhotel(hotel._id)">Reserve</v-btn>
+                </v-col>
               <!-- </div> -->
               <!-- <div class="col">
                   <a :href="hotel.video_url" target="_blank">
@@ -198,7 +198,6 @@ export default {
 .v-card {
   transition: opacity 0.4s ease-in-out;
 }
-
 .v-card:not(.on-hover) {
   opacity: 1;
 }
@@ -212,6 +211,9 @@ export default {
 }
 .search {
   font-size: 12px;
+}
+.search-wrapper {
+  height: 85px;
 }
 .input {
   box-sizing: content-box;
@@ -232,5 +234,8 @@ export default {
 }
 #reserve {
   width: 100%;
+}
+#delete {
+    width: 100%;
 }
 </style>

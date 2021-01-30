@@ -44,7 +44,7 @@
           ></v-select>-->
         </v-col>
       </v-row>Total
-      <input id="total" type="text" v-model="total" disabled />
+      <input id="card" type="text" v-model="total" disabled />
       TND
     </v-container>
 
@@ -134,7 +134,7 @@ export default {
       if (!hotel.data.message) {
         // this.$store.commit("setHotel", hotel.data);
         this.error = "";
-        this.$router.push("/payment");
+        this.$router.push("/home");
       } else {
           this.error = "Error try later"
         }

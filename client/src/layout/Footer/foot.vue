@@ -39,11 +39,6 @@ export default {
       "mdi-phone",
       "mdi-email",
     ],
-
-    // padless: true,
-    // variant: true,
-    // absolute: true,
-    // fixed: true,
   }),
 };
 </script>

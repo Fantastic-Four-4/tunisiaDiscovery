@@ -1,6 +1,6 @@
 <template >
-  <v-sheet width="100%">
-    <v-tabs id="tabs" width="100%" height="64px"
+  <v-sheet  width="100%">
+    <v-tabs id="tabs"  width="100%" height="64px"
       dark color="cyan"
       
       show-arrows
