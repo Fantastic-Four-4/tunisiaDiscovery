@@ -1,5 +1,5 @@
 <template>
-  <v-app >
+  <v-app>
     <img
       src="https://www.xmple.com/wallpaper/gradient-blue-linear-grey-2880x1800-c2-c0c0c0-1e90ff-a-90-f-14.svg"
       id="bg"
@@ -11,9 +11,9 @@
     <div class="app"></div>
     <router-view></router-view>
 
-    <div>
+    <v-footer>
       <Foot />
-    </div>
+    </v-footer>
   </v-app>
 </template>
 
@@ -33,7 +33,6 @@ export default {
 </script>
 
 <style>
-
 .v-toolbar__content, .v-toolbar__content {
   padding: 0 !important;
 }

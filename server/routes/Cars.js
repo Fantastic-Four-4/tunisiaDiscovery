@@ -3,7 +3,8 @@ const car = require("../models/Cars");
 
 const router = Router();
 
-router.post("/", async(req, res) => {
+//------------ create a car ------------------
+router.post("/create", async(req, res) => {
     const { title, imageUrl, text, price } = req.body;
     let cars = {};
     cars.title = title;
@@ -12,6 +13,7 @@ router.post("/", async(req, res) => {
     cars.price = price;
     let carModel = new car(cars);
     await carModel.save();
+    console.log(carModel)
     res.json(carModel);
 });
 
@@ -44,18 +46,17 @@ router.get("/:id", async(req, res) => {
     }
 });
 
-//------------ create an car ------------------
-
-// router.post('/', async(req, res) => {
-//     const newCar = new car(req.body);
-//     try {
-//         const Carcreate = await newCar.save();
-//         if (!Carcreate) throw new Error('Car creation opperation failed !');
-//         res.status(200).json(Carcreate);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message })
-//     }
-// })
+//------------ delete a car ------------------
+router.delete('/:id', async (req, res) =>{
+    try{
+        const { id } = req.params
+        const deleteCar = await car.findByIdAndDelete(id);
+        if(!deleteCar) throw new Error('car deletion not done !');
+        res.status(200).json(deleteCar);
+    } catch (err) {
+        res.status(500).json({message: err.message})
+    }
+});
 
 //------------ export module ---------------
 module.exports = router;

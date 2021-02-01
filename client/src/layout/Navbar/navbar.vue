@@ -47,8 +47,8 @@
       </div>
       <div class="navdiv2" v-else-if='this.islogged'>
       <span class="name_loggedin"><v-icon>{{ icons.mdiAccount }}</v-icon>{{this.username}}</span>
-      <v-btn color="green" class="navbar_space2" router-link to="/payment"><v-icon>mdi-cart</v-icon></v-btn>
-      <v-btn @click="logout()" class="navbar_space2" color="red" >logout</v-btn>
+      <v-btn color="green" class="ma-2" id="buttons" router-link to="/payment"><v-icon>mdi-cart</v-icon></v-btn>
+      <v-btn @click="logout()" class="ma-2" id="buttons" color="red" >logout</v-btn>
       </div>
 </v-tabs>
   </v-sheet>
@@ -101,5 +101,8 @@ export default {
 }
 .navbar_space2{
    margin-left:5rem;
+}
+#buttons {
+  top:5px;
 }
 </style>

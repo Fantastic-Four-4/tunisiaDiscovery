@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const hotelpayment = require("../models/hotelpayment");
+const hotelpayment = require("../models/hotelpayments");
 
 const router = Router();
 

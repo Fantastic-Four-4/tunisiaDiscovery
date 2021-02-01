@@ -22,7 +22,7 @@
       class="mr-4"
       @click="signin()"
     >
-     submit
+     Submit
     </v-btn>
     {{ error }}
   </form>
@@ -40,8 +40,7 @@
       email: '',
       password: '',
       error: '',
-            showPassword: false,
-
+      showPassword: false,
     }},
     methods:{
      async signin() {
