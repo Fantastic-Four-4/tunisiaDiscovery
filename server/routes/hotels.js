@@ -40,7 +40,6 @@ router.post("/create", async(req, res) => {
     const hotel = req.body;
     let hotelModel = new Hotel(hotel);
     await hotelModel.save();
-    console.log(hotelModel)
     res.json(hotelModel);
 });
 
@@ -58,8 +57,7 @@ router.get('/:id', async(req, res) => {
 // GET request - get all hotels
 router.get("/", async(req, res) => {
     try {
-        let hotels = await Hotel.find();
-        console.log(hotels);
+        let hotels = await Hotel.find().lean()
         res.json({
             success: true,
             hotels: hotels,
@@ -77,7 +75,6 @@ router.delete('/:id', async (req, res) =>{
     try{
         const { id } = req.params
         const deleteHotel = await Hotel.findByIdAndDelete(id);
-        console.log(id)
         if(!deleteHotel) throw new Error('Hotel deletion not done !');
         res.status(200).json(deleteHotel);
     } catch (err) {

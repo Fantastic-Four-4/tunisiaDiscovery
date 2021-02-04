@@ -30,6 +30,8 @@
     data () {
       return {
         slides: [
+          'Gammarth',
+          'Kelibya',
           'Douz',
           'Carthage',
           'Kairouan',
@@ -38,6 +40,8 @@
           'Monastir',
         ],
         srcs: [
+          "https://res.cloudinary.com/dtw8dzmf1/image/upload/v1612186064/Screenshot_2021-02-01_134442_qauxe1.png",
+          "https://res.cloudinary.com/dtw8dzmf1/image/upload/v1612186195/Screenshot_2021-02-01_140148_zvac9j.png",
         "https://c4.wallpaperflare.com/wallpaper/100/297/74/desert-sand-tourism-camels-wallpaper-preview.jpg",
         "https://c4.wallpaperflare.com/wallpaper/403/906/437/nature-landscape-mountains-clouds-sunset-hd-wallpaper-preview.jpg",
         "https://c0.wallpaperflare.com/preview/995/39/628/building-architecture-dome-tunisia.jpg",

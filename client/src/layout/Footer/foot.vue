@@ -1,8 +1,14 @@
 <template>
   <v-footer class="footer " padless >
     <v-card flat tile width="100%" class="black  text-center">
-      <div id="wrapper" class="footer-content">
-        <div id="left" class="about">
+      <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/about">
+     About
+    </v-btn>
+     <v-btn class="ma-2" outlined color="light-green lighten-5" router-link to="/contact">
+     Contact
+    </v-btn>
+      <div class="footer-content">
+        <div class="about">
           <h1 class="Z">See Tunisia through our eyes</h1>
           <p class="W">
             Completely renovated in 2014, endowed with a unique charm that of a green garden trimmed with palm trees and various plants as well as a magnificent sandy beach to which there is a direct access, Hammamet Regency Hotel provides well-being and relaxation.
@@ -11,18 +17,21 @@
             Our main restaurant, which has a beautiful terrace overlooking the pool and garden, offers a buffet of diverse local and international cuisine, meeting everyone’s expectations.
           </p>
         </div>
+        <div id="wrapper" class="footer-content">
         <!-- <v-divider></v-divider> -->
-        <div id="right" class="contact">
+        <div id="left" class="about">
           <span class="X">
             <v-icon class="a" large color="white darken-2">mdi-phone</v-icon>&nbsp; Phone: (216) 22 22 22 22
           </span>
-        </div>
+                  </div>
         <div id="right" class="contact">
+
           <span class="X">
             <v-icon large color="white darken-2">mdi-mail</v-icon>&nbsp;Mail: contact@tunisia.com
           </span>
-                </div>
+                  </div>
 
+        </div>
       </div>
       <v-card-text class="white--text">
         {{ new Date().getFullYear() }} —
@@ -48,7 +57,7 @@ export default {
   color: rgba(22, 184, 199, 0.7);
 }
 .W {
-  font-size: 19px;
+  font-size: 17px;
   color:rgba(22, 184, 199, 0.7);
 }
 .Z {

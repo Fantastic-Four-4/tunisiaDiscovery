@@ -32,6 +32,18 @@ router.get("/", async(req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+router.post("/findcar", async(req, res) => {
+    try {
+
+            var cars = await car.find({
+                title: { $regex: req.body.title, $options: "i" },
+            });
+        
+        res.send(cars);
+    } catch (err) {
+        res.send(err);
+    }
+});
 
 //------------ get one car ----------------
 

@@ -1,6 +1,5 @@
 <template>
-  <v-container class="grey lighten-5 mb-6">
-
+  <v-container class="grey lighten-3 mb-6">
     <div class="search-wrapper">
       <v-toolbar dark color="cyan">
         <v-toolbar-title>Search</v-toolbar-title>
@@ -37,7 +36,7 @@
                 <v-expand-transition>
                   <div
                     v-if="hover"
-                    class="d-flex transition-fast-in-fast-out black darken-2 v-card--reveal display-1 white--text"
+                    class="d-flex transition-fast-in-fast-out darken-2 v-card--reveal display-1 white--text"
                     style="height: 100%;"
                   >{{ hotel.title }}</div>
                 </v-expand-transition>
@@ -56,10 +55,9 @@
                   readonly
                   size="14"
                 ></v-rating>
-
               </v-row>
               <div class="my-4 subtitle-1 blue--text">{{ hotel.address }}</div>
-              <v-expand-transition>
+              <!-- <v-expand-transition>
                 <v-card
                   id="card2"
                   v-if="hotel.reveal"
@@ -73,7 +71,7 @@
                     <v-btn color="primary" @click="revealDescription(i)">Close</v-btn>
                   </v-card-actions>
                 </v-card>
-              </v-expand-transition>
+              </v-expand-transition> -->
             </v-card-text>
 
             <v-divider class="mx-4"></v-divider>
@@ -105,18 +103,17 @@
             <v-card-actions>
               <!-- <div class="row">
               <div class="col">-->
-                <v-col v-if="userstatus === 'admin'">
-              <v-btn
-                @click="remove(hotel._id)"
-               id="delete"
-                class="ma-1"
-                color="red"
-              >Delete</v-btn>
-                  </v-col>
-                <v-col v-else>
+              <v-col v-if="userstatus === 'admin'">
+                <v-btn @click="deleteConfirmations=true" id="delete" class="ma-1" color="red">Delete</v-btn>
+                <v-row justify="center">
+                  <!-- @click="remove(hotel._id)" -->
+    
+  </v-row>
+              </v-col>
 
-              <v-btn id="reserve" dark color="cyan" @click="showhotel(hotel._id)">Reserve</v-btn>
-                </v-col>
+              <v-col v-else>
+                <v-btn id="reserve" dark color="cyan" @click="showhotel(hotel._id)">Reserve</v-btn>
+              </v-col>
               <!-- </div> -->
               <!-- <div class="col">
                   <a :href="hotel.video_url" target="_blank">
@@ -128,6 +125,45 @@
           </v-card>
         </v-hover>
       </v-col>
+      <v-dialog
+      v-model="deleteConfirmations"
+      persistent
+      max-width="290"
+    >
+      <!-- <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="primary"
+          dark
+          v-bind="attrs"
+          v-on="on"
+        >
+          Open Dialog
+        </v-btn>
+      </template> -->
+      <v-card>
+        <v-card-title class="headline">
+          Are you sure you want to delete this?
+        </v-card-title>
+        <v-card-text>This hotel will be no longer available if you delete it.</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="deleteConfirmations = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            color="warning"
+            text
+            @click="remove(hotel._id)"
+          >
+            Delete
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     </v-row>
   </v-container>
 </template>
@@ -148,7 +184,7 @@ export default {
       this.$router.push(`/reservation/${id}`);
     },
     appearHotelCreate() {
-      this.apear = !this.apear;
+      this.appear = !this.appear;
     },
     async remove(id) {
       await axios.delete(`http://localhost:5000/api/hotels/${id}`);
@@ -170,7 +206,6 @@ export default {
   async beforeMount() {
     var hotels = await axios.get("http://localhost:5000/api/hotels");
     this.hotels = hotels.data.hotels;
-    console.log("hotels", this.hotels);
   },
   data() {
     return {
@@ -187,6 +222,7 @@ export default {
       panel: [0, 1],
       disabled: false,
       readonly: false,
+      deleteConfirmations: false,
     };
   },
   components: {
@@ -236,6 +272,6 @@ export default {
   width: 100%;
 }
 #delete {
-    width: 100%;
+  width: 100%;
 }
 </style>

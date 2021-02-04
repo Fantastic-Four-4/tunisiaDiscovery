@@ -11,7 +11,6 @@ router.post('/', async(req, res) => {
             console.log(Paycreate)
             res.status(200).json(Paycreate);
         } catch (err) {
-            console.log(err)
             res.status(500).json({ message: err.message })
         }
 });

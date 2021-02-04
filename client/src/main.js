@@ -111,6 +111,13 @@ const router = new VueRouter({
     mode: 'history'
 })
 
+// router.beforeEach(function() {
+//     if (!this.$store.state.isDataFetched) {
+//        this.$store.dispatch({}) 
+//        this.$store.state.isDataFetched = true
+//     }
+// })
+
 new Vue({
     store,
     router,
